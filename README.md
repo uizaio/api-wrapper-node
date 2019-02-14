@@ -34,6 +34,8 @@ These below APIs used to take action with your media files (we called Entity) Se
 
 ### Create entity
 
+Create entity using full URL. Direct HTTP, FTP or AWS S3 link are acceptable.
+
 ```node
 uiza.entity.create({
   'name': 'Sample Video',
@@ -49,9 +51,21 @@ uiza.entity.create({
 
 ### Retrieve an entity
 
+Get detail of entity including all information of entity
 
+```node
+uiza.entity.retrieve({
+  'id': 'd1781e62-2d2c-4e3c-b8de-e808e50ac845'
+}).then((res) => {
+  //Identifier of entity
+}).catch((err) => {
+  //Error
+});
+```
 
 ### List all entities
+
+Get list of entities including all detail.
 
 ```node
 uiza.entity.list().then((res) => {
@@ -63,12 +77,14 @@ uiza.entity.list().then((res) => {
 
 ### Update an entity
 
+Update entity's information.
+
 ```node
 uiza.entity.update({
   'id': '16de511f-5.......',
   'name': '--Title edited--',
 }).then((res) => {
-  // Identifier of entity has been deleted
+  // Identifier of entity has been updated
 }).catch((err) => {
   //Error
 });
@@ -86,19 +102,57 @@ uiza.entity.delete({'id': '5f1c78bd-69......'}).then((res) => {
 
 ### Search entity
 
+Search entity base on keyword entered
 
+```node
+uiza.entity.search({'keyword': 'sample'}).then((res) => {
+  // Response search entity base on keyword entered
+}).catch((err) => {
+  //Error
+});
+```
 
 ### Publish entity to CDN
 
+Publish entity to CDN, use for streaming
 
+```node
+uiza.entity.publish({
+  'id': '1a6600c0-6ecd-4ca9-9ee1-3125e7c9d9f8',
+}).then((res) => {
+  // Identifier of task publish
+}).catch((err) => {
+  //Error
+});
+```
 
 ### Get status publish
 
+Publish entity to CDN, use for streaming
 
+```node
+uiza.entity.get_status_publish({
+  'id': '8c6de86e-f468-4226-b476-4f320bda225a',
+}).then((res) => {
+  //Progress of task publish, will be success when reach 100
+  // Status of task publish (processing, success, error)
+}).catch((err) => {
+  //Error
+});
+```
 
 ### Get AWS upload key
 
+This API will be return the bucket temporary upload storage & key for upload, so that you can push your file to Uiza’s storage and get the link for URL upload & create entity
 
+```node
+uiza.entity.get_aws_upload_key()
+.then((res) => {
+  // The response body will return you the paramaters that used for input to aws sdk , then upload your files to Uiza’s storage
+}).catch((err) => {
+  //Error
+});
+```
 
 ## Development
 
@@ -108,4 +162,3 @@ Run all tests:
 $ npm install
 $ npm test
 ```
-
