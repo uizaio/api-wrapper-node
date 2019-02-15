@@ -154,6 +154,54 @@ uiza.entity.get_aws_upload_key()
 });
 ```
 
+
+## Handling errors
+
+```node
+// Note: Node.js API does not throw exceptions, and instead prefers the
+// asynchronous style of error handling described below.
+//
+// An error from the Uiza API or an otheriwse asynchronous error
+
+// Or in the form of a rejected promise.
+// E.g. uiza.entity.retrieve('d1781e6....').then(
+//        function(result) {},
+//        function(err) {}
+//      );
+
+switch (err.type) {
+  case 'BadRequestError':
+    // A declined card error
+    err.message; // => e.g. "The request was unacceptable, often due to missing a required parameter."
+    err.;  // => e.g. "https://docs.uiza.io/#retrieve-an-entity"
+    break;
+  case 'UnauthorizedError':
+    // No valid API key provided.
+    break;
+  case 'NotFoundError':
+    // The requested resource doesn't exist.
+    break;
+  case 'UnprocessableError':
+    // The syntax of the request is correct (often cause of wrong parameter)
+    break;
+  case 'InternalServerError':
+    // We had a problem with our server. Try again later.
+    break;
+  case 'ServiceUnavailableError':
+    // The server is overloaded or down for maintenance.
+    break;
+  case 'ClientError':
+    // The error seems to have been caused by the client
+    break;
+  case 'ServerError':
+    // The server is aware that it has encountered an error
+    break;
+  default:
+    // Handle any other types of unexpected errors
+    break;
+}
+```
+
 ## Development
 
 Run all tests:
