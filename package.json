@@ -4,7 +4,7 @@
   "description": "Uiza API wrapper",
   "main": "lib/uiza.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha './test/**/**/*.spec.js'",
     "clean": "rm -rf ./.nyc_output ./node_modules/.cache"
   },
   "repository": {
@@ -31,6 +31,7 @@
     "nyc": "^13.2.0"
   },
   "dependencies": {
+    "nock": "^10.0.6",
     "node-fetch": "^2.3.0"
   }
 }
