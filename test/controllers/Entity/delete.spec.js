@@ -26,7 +26,7 @@ describe('Entity-Controller', function () {
       });
 
     const result = await uiza.entity.delete({id});
-    expect(result.code).eq(200)
+    expect(result).eqls(DELETE_DATA_RESPONSE.data)
   });
 
   it('/DELETE: delete missing parameters', async () => {

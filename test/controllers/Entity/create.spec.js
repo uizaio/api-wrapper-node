@@ -18,14 +18,14 @@ describe('Entity-Controller', function () {
     nock(workspaceApiDomain)
       .post(path)
       .reply(200, {
-        ...POST_DATA_FOR_CREATING_VIDEO,
+        "data": {"id": "123"},
         "code": 200,
       });
 
     const result = await uiza.entity.create({
       ...POST_DATA_FOR_CREATING_VIDEO
     });
-    expect(result.code).eq(200)
+    expect(result).eqls({"id": "123"})
   });
 
   it('/POST: create missing parameters', async () => {
