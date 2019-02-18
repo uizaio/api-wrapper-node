@@ -7,26 +7,30 @@ const path = '/api/public/v3/media/entity/search?keyword=';
 const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
 const errorMessages = require('../../../lib/utils/Errors')();
 
+const DATA_RESPONSE = {
+  "data": [
+    {
+        "id": "16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
+        "name": "Sample Video 001",
+    },
+    {
+        "id": "16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
+        "name": "Sample video test",
+    }
+  ]
+};
+
 describe('Entity-Controller', function () {
   it('/GET: search successfully', async () => {
     nock(workspaceApiDomain)
       .get(`${path}${keyword}`)
       .reply(200, {
-        "data": [
-          {
-              "id": "16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
-              "name": "Sample Video 001",
-          },
-          {
-              "id": "16ab25d3-fd0f-4568-8aa0-0339bbfd674f",
-              "name": "Sample video test",
-          }
-        ],
+        ...DATA_RESPONSE,
         "code": 200,
       });
 
     const result = await uiza.entity.search(keyword);
-    expect(result.code).eq(200)
+    expect(result).eqls(DATA_RESPONSE.data)
   });
 
   it('/GET: search missing parameters', async () => {

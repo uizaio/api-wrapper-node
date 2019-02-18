@@ -7,24 +7,28 @@ const path = '/api/public/v3/media/entity?id=';
 const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
 const errorMessages = require('../../../lib/utils/Errors')();
 
+const DATA_RESPONSE = {
+  "data": {
+    "id": "42ceb1ab-18ef-4f2e-b076-14299756d182",
+    "name": "Sample Video 1",
+    "shortDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+    "view": 0,
+    "createdAt": "2018-06-22T19:20:17.000Z",
+    "updatedAt": "2018-06-22T19:20:17.000Z"
+  }
+};
+
 describe('Entity-Controller', function () {
   it('/GET: retrieve successfully', async () => {
     nock(workspaceApiDomain)
       .get(`${path}${id}`)
       .reply(200, {
-        "data": {
-              "id": "42ceb1ab-18ef-4f2e-b076-14299756d182",
-              "name": "Sample Video 1",
-              "shortDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-              "view": 0,
-              "createdAt": "2018-06-22T19:20:17.000Z",
-              "updatedAt": "2018-06-22T19:20:17.000Z"
-          },
+        ...DATA_RESPONSE,
         "code": 200,
       });
 
     const result = await uiza.entity.retrieve(id);
-    expect(result.code).eq(200)
+    expect(result).eqls(DATA_RESPONSE.data);
   });
 
   it('/GET: retrieve missing parameters', async () => {

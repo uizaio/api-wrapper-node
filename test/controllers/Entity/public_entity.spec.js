@@ -41,7 +41,7 @@ describe('Entity-Controller', function () {
       const result = await uiza.entity.publish({
         'id': '16ab25d3-fd0f-4568-8aa0-0339bbfd674f',
       });
-      expect(result.code).eq(200)
+      expect(result).eqls(dataResponseSuccess.data);
     });
   });
 
