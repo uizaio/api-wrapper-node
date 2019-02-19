@@ -28,7 +28,7 @@ const DATA_RESPONSE = {
   }
 };
 
-describe('Entity-Controller', function () {
+describe('Storage-Controller', function () {
   it('/GET: retrieve successfully', async () => {
     nock(workspaceApiDomain)
       .get(`${path}${id}`)

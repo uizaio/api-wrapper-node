@@ -13,3 +13,18 @@ uiza.storage.add({
 
 /* retrieve storage*/
 uiza.storage.retrieve('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => console.log(res)).catch((err) => console.log(err));
+
+/* update storage*/
+uiza.storage.update({
+  'id': '03e6a059-c6d2-440c-a653-1e309918c792',
+  'name': 'FTP Uiza',
+  'description': 'FTP of Uiza, use for transcode',
+  'storageType': 'ftp',
+  'host': 'ftp-example.uiza.io',
+  'username': 'uiza',
+  'password': '=59x@LPsd+w7qW',
+  'port': 21
+}).then((res) => console.log(res)).catch((err) => console.log(err));
+
+// /* remove storage*/
+uiza.storage.remove('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => console.log(res)).catch((err) => console.log(err));
