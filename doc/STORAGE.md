@@ -71,10 +71,45 @@ Update storage's information.
 
 See details [here](https://docs.uiza.io/#update-storage).
 
+```node
+uiza.storage.update({
+  'id': '03e6a059-c6d2-440c-a653-1e309918c792',
+  'name': 'FTP Uiza',
+  'description': 'FTP of Uiza, use for transcode',
+  'storageType': 'ftp',
+  'host': 'ftp-example.uiza.io',
+  'username': 'uiza',
+  'password': '=59x@LPsd+w7qW',
+  'port': 21
+}).then((res) => {
+  //Identifier of entity has been created
+}).catch((err) => {
+  //Error
+});
+```
 
+Example Response
+
+```node
+{ 'id': '03e6a059-c6d2-440c-a653-1e309918c792' }
+```
 
 ## Remove storage
 Remove storage that added to Uiza.
+
+```node
+uiza.storage.remove('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => {
+  //Identifier of entity has been created
+}).catch((err) => {
+  //Error
+});
+```
+
+Example Response
+
+```node
+{ 'id': '03e6a059-c6d2-440c-a653-1e309918c792' }
+```
 
 See details [here](https://docs.uiza.io/#remove-storage).
 
