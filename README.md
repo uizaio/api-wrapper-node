@@ -27,7 +27,7 @@ Add this line to your package.json:
 
 ```node
 "dependencies": {
-  "nock": "^1.0.0",
+  "uiza": "1.0.0",
 }
 ```
 

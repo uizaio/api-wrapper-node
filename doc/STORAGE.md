@@ -20,7 +20,7 @@ uiza.storage.add({
   'password': '=59x@LPsd+w7qW',
   'port': 21,
 }).then((res) => {
-  //Identifier of entity has been created
+  //Identifier of storage has been add
 }).catch((err) => {
   //Error
 });
@@ -38,7 +38,7 @@ See details [here](https://docs.uiza.io/#retrieve-a-storage).
 
 ```node
 uiza.storage.retrieve('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => {
-  //Identifier of entity has been created
+  //Identifier of storage has been retrive
 }).catch((err) => {
   //Error
 });
@@ -82,7 +82,7 @@ uiza.storage.update({
   'password': '=59x@LPsd+w7qW',
   'port': 21
 }).then((res) => {
-  //Identifier of entity has been created
+  //Identifier of storage has been update
 }).catch((err) => {
   //Error
 });
@@ -99,7 +99,7 @@ Remove storage that added to Uiza.
 
 ```node
 uiza.storage.remove('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => {
-  //Identifier of entity has been created
+  //Identifier of storage has been removed
 }).catch((err) => {
   //Error
 });
