@@ -251,9 +251,9 @@ See details [here](https://docs.uiza.io/#delete-a-record-file).
 ```node
 const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
 
-uiza.live.list_recorded()
+uiza.live.delete('id....')
   .then((res) => {
-    // Identifier of record
+    // Identifier of deleting a record
   }).catch((err) => {
     //Error
   });
