@@ -5,7 +5,7 @@ Welcome to your new package!
 The Uiza Node library provides convenient access to the Uiza API from applications written in server-side JavaScript.
 
 ## Introduction
-This is documents the public API for Uiza version 3.0.
+This is the public API documents for Uiza version 3.0.
 
 The Uiza API is organized around RESTful standard.
 Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors.
@@ -27,7 +27,7 @@ Add this line to your package.json:
 
 ```node
 "dependencies": {
-  "uiza": "1.0.0",
+  "uiza": "1.0.1",
 }
 ```
 
@@ -48,14 +48,14 @@ $ npm install uiza --save
 * Node >=4
 
 ## Usage
-The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).\
+The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).
 
 See details [here](https://docs.uiza.io/#authentication).
 
 ## Node
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
+const uiza = require('uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
 ```
 
 ## Entity
@@ -96,7 +96,7 @@ These APIs used to create and manage live streaming event.
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/LIVE_STREAMING.md).
 
 ## Callback
-Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed and .
+Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed .
 
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/CALLBACK.md).
 
