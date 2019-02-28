@@ -6,7 +6,7 @@ const path = '/api/public/v3/live/entity';
 const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
 const errorMessages = require('../../../lib/utils/Errors')();
 
-const PUT_DATA_FOR_UPDATING_VIDEO = {
+const PUT_DATA_FOR_UPDATING_LIVE = {
   'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab',
   'name': 'live test',
   'mode': 'pull',
@@ -20,12 +20,12 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .put(path)
       .reply(200, {
-        ...PUT_DATA_FOR_UPDATING_VIDEO,
+        ...PUT_DATA_FOR_UPDATING_LIVE,
         "code": 200,
       });
 
     const result = await uiza.live.update({
-      ...PUT_DATA_FOR_UPDATING_VIDEO
+      ...PUT_DATA_FOR_UPDATING_LIVE
     });
     expect(result.code).eq(200)
   });
@@ -47,7 +47,7 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .put(path)
       .reply(401, {
-        ...PUT_DATA_FOR_UPDATING_VIDEO,
+        ...PUT_DATA_FOR_UPDATING_LIVE,
         "code": 401,
       });
 
@@ -61,7 +61,7 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .put(path)
       .reply(404, {
-        ...PUT_DATA_FOR_UPDATING_VIDEO,
+        ...PUT_DATA_FOR_UPDATING_LIVE,
         "code": 404,
       });
 
@@ -75,7 +75,7 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .put(path)
       .reply(422, {
-        ...PUT_DATA_FOR_UPDATING_VIDEO,
+        ...PUT_DATA_FOR_UPDATING_LIVE,
         "code": 422,
       });
 
@@ -89,7 +89,7 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .put(path)
       .reply(500, {
-        ...PUT_DATA_FOR_UPDATING_VIDEO,
+        ...PUT_DATA_FOR_UPDATING_LIVE,
         "code": 500,
       });
 
@@ -103,7 +103,7 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .put(path)
       .reply(503, {
-        ...PUT_DATA_FOR_UPDATING_VIDEO,
+        ...PUT_DATA_FOR_UPDATING_LIVE,
         "code": 503,
       });
 
@@ -117,7 +117,7 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .put(path)
       .reply(450, {
-        ...PUT_DATA_FOR_UPDATING_VIDEO,
+        ...PUT_DATA_FOR_UPDATING_LIVE,
         "code": 450,
       });
 
@@ -131,7 +131,7 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .put(path)
       .reply(501, {
-        ...PUT_DATA_FOR_UPDATING_VIDEO,
+        ...PUT_DATA_FOR_UPDATING_LIVE,
         "code": 501,
       });
 

@@ -2,145 +2,144 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/live/entity';
+const path = '/api/public/v3/admin/user';
 const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
 const errorMessages = require('../../../lib/utils/Errors')();
 
-const POST_DATA_FOR_CREATING_LIVE = {
-  'name': 'test event',
-  'mode': 'push',
-  'encode': 1,
-  'dvr': 1,
-  'description': 'This is for test event',
-  'poster': '//image1.jpeg',
-  'thumbnail': '//image1.jpeg',
-  'linkStream': [
-    'https://playlist.m3u8'
-  ],
-  'resourceMode': 'single'
+const PUT_DATA_FOR_UPDATING_USER = {
+  'id': '9e4df7c2-111d-4107-9c2e-6d2cb13c06f0',
+  'status': 0,
+  'username': 'user_test_110',
+  'email': 'user_test@uiza.io',
+  'avatar': 'https://exemple.com/avatar.jpeg',
+  'fullname': 'User Test',
+  'dob': '05/15/2018',
+  'gender': 0,
+  'password': '123456789',
+  'isAdmin': 1
 }
 
-describe('Live-Controller', function () {
-  it('/POST: create successfully', async () => {
+describe('User-Controller', function () {
+  it('/PUT: update successfully', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(200, {
-        "data": {"id": "123"},
+        ...PUT_DATA_FOR_UPDATING_USER,
         "code": 200,
       });
 
-    const result = await uiza.live.create({
-      ...POST_DATA_FOR_CREATING_LIVE
+    const result = await uiza.user.update({
+      ...PUT_DATA_FOR_UPDATING_USER
     });
-    expect(result).eqls({"id": "123"})
+    expect(result.code).eq(200)
   });
 
-  it('/POST: create missing parameters', async () => {
+  it('/PUT: update missing parameters', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(400, {
         "code": 400,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.update({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/POST: unauthorized', async () => {
+  it('/PUT: unauthorized', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(401, {
-        ...POST_DATA_FOR_CREATING_LIVE,
+        ...PUT_DATA_FOR_UPDATING_USER,
         "code": 401,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.update({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/POST: not found', async () => {
+  it('/PUT: not found', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(404, {
-        ...POST_DATA_FOR_CREATING_LIVE,
+        ...PUT_DATA_FOR_UPDATING_USER,
         "code": 404,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.update({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/POST: wrong parameter', async () => {
+  it('/PUT: wrong parameter', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(422, {
-        ...POST_DATA_FOR_CREATING_LIVE,
+        ...PUT_DATA_FOR_UPDATING_USER,
         "code": 422,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.update({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/POST: had a problem with our server', async () => {
+  it('/PUT: had a problem with our server', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(500, {
-        ...POST_DATA_FOR_CREATING_LIVE,
+        ...PUT_DATA_FOR_UPDATING_USER,
         "code": 500,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.update({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/POST: service is unable', async () => {
+  it('/PUT: service is unable', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(503, {
-        ...POST_DATA_FOR_CREATING_LIVE,
+        ...PUT_DATA_FOR_UPDATING_USER,
         "code": 503,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.update({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/POST: caused by the client', async () => {
+  it('/PUT: caused by the client', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(450, {
-        ...POST_DATA_FOR_CREATING_LIVE,
+        ...PUT_DATA_FOR_UPDATING_USER,
         "code": 450,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.update({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/POST: server has encountered', async () => {
+  it('/PUT: server has encountered', async () => {
     nock(workspaceApiDomain)
-      .post(path)
+      .put(path)
       .reply(501, {
-        ...POST_DATA_FOR_CREATING_LIVE,
+        ...PUT_DATA_FOR_UPDATING_USER,
         "code": 501,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.update({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))

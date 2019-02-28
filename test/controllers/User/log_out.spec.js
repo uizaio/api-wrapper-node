@@ -2,26 +2,24 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/live/entity';
+const path = '/api/public/v3/admin/user/logout';
 const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
 const errorMessages = require('../../../lib/utils/Errors')();
 
-const POST_DATA_FOR_CREATING_LIVE = {
-  'name': 'test event',
-  'mode': 'push',
-  'encode': 1,
-  'dvr': 1,
-  'description': 'This is for test event',
-  'poster': '//image1.jpeg',
-  'thumbnail': '//image1.jpeg',
-  'linkStream': [
-    'https://playlist.m3u8'
-  ],
-  'resourceMode': 'single'
+const POST_DATA_FOR_CREATING_USER = {
+  'status': 1,
+  'username': 'user_test_123',
+  'email': 'user_test@uiza.io',
+  'fullname': 'User Test',
+  'avatar': 'https://exemple.com/avatar.jpeg',
+  'dob': '05/15/2018',
+  'gender': 0,
+  'password': 'FMpsr<4[dGPu?B#u',
+  'isAdmin': 0
 }
 
-describe('Live-Controller', function () {
-  it('/POST: create successfully', async () => {
+describe('User-Controller', function () {
+  it('/POST: log_out successfully', async () => {
     nock(workspaceApiDomain)
       .post(path)
       .reply(200, {
@@ -29,20 +27,17 @@ describe('Live-Controller', function () {
         "code": 200,
       });
 
-    const result = await uiza.live.create({
-      ...POST_DATA_FOR_CREATING_LIVE
-    });
+    const result = await uiza.user.log_out();
     expect(result).eqls({"id": "123"})
   });
 
-  it('/POST: create missing parameters', async () => {
+  it('/POST: log_out missing parameters', async () => {
     nock(workspaceApiDomain)
       .post(path)
       .reply(400, {
         "code": 400,
       });
-
-    const result = await uiza.live.create({
+    const result = await uiza.user.log_out({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
@@ -52,11 +47,10 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .post(path)
       .reply(401, {
-        ...POST_DATA_FOR_CREATING_LIVE,
         "code": 401,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.log_out({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
@@ -66,11 +60,10 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .post(path)
       .reply(404, {
-        ...POST_DATA_FOR_CREATING_LIVE,
         "code": 404,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.log_out({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
@@ -80,11 +73,10 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .post(path)
       .reply(422, {
-        ...POST_DATA_FOR_CREATING_LIVE,
         "code": 422,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.log_out({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
@@ -94,11 +86,10 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .post(path)
       .reply(500, {
-        ...POST_DATA_FOR_CREATING_LIVE,
         "code": 500,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.log_out({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
@@ -108,11 +99,10 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .post(path)
       .reply(503, {
-        ...POST_DATA_FOR_CREATING_LIVE,
         "code": 503,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.log_out({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
@@ -122,11 +112,10 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .post(path)
       .reply(450, {
-        ...POST_DATA_FOR_CREATING_LIVE,
         "code": 450,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.log_out({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
@@ -136,11 +125,10 @@ describe('Live-Controller', function () {
     nock(workspaceApiDomain)
       .post(path)
       .reply(501, {
-        ...POST_DATA_FOR_CREATING_LIVE,
         "code": 501,
       });
 
-    const result = await uiza.live.create({
+    const result = await uiza.user.log_out({
       'name': 'Test Video',
     });
     expect(result.message).eq(errorMessages.getMessage(result.type))
