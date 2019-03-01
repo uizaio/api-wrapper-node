@@ -85,7 +85,7 @@ See details [here](https://docs.uiza.io/#line).
 const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
 
 /** get_line */
-uiza.analytic.get_line('2018-11-01%2008:00', '2018-11-19%2014:00').then((res) => {
+uiza.analytic.get_line('2019-01-01', '2019-03-01', 'rebuffer_count').then((res) => {
   //Identifier of get_line
 }).catch((err) => {
   //Error
