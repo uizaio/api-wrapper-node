@@ -31,7 +31,7 @@ describe('Analytic-Controller', function () {
         "code": 200,
       });
 
-    const result = await uiza.analytic.get_line(start_date, end_date, type);
+    const result = await uiza.analytic.get_line({start_date, end_date, type});
     expect(result).eqls(DATA_RESPONSE.data);
   });
 
@@ -53,7 +53,7 @@ describe('Analytic-Controller', function () {
         "code": 401,
       });
 
-    const result = await uiza.analytic.get_line(start_date, end_date, type);
+    const result = await uiza.analytic.get_line({start_date, end_date, type});
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
@@ -64,7 +64,7 @@ describe('Analytic-Controller', function () {
         "code": 404,
       });
 
-    const result = await uiza.analytic.get_line(start_date, end_date, type);
+    const result = await uiza.analytic.get_line({start_date, end_date, type});
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
@@ -75,7 +75,7 @@ describe('Analytic-Controller', function () {
         "code": 422,
       });
 
-    const result = await uiza.analytic.get_line(start_date, end_date, type);
+    const result = await uiza.analytic.get_line({start_date, end_date, type});
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
@@ -86,7 +86,7 @@ describe('Analytic-Controller', function () {
         "code": 500,
       });
 
-    const result = await uiza.analytic.get_line(start_date, end_date, type);
+    const result = await uiza.analytic.get_line({start_date, end_date, type});
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
@@ -97,7 +97,7 @@ describe('Analytic-Controller', function () {
         "code": 503,
       });
 
-    const result = await uiza.analytic.get_line(start_date, end_date, type);
+    const result = await uiza.analytic.get_line({start_date, end_date, type});
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
@@ -108,7 +108,7 @@ describe('Analytic-Controller', function () {
         "code": 450,
       });
 
-    const result = await uiza.analytic.get_line(start_date, end_date, type);
+    const result = await uiza.analytic.get_line({start_date, end_date, type});
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
@@ -119,7 +119,7 @@ describe('Analytic-Controller', function () {
         "code": 501,
       });
 
-    const result = await uiza.analytic.get_line(start_date, end_date, type);
+    const result = await uiza.analytic.get_line({start_date, end_date, type});
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 });

@@ -15,7 +15,11 @@ See details [here](https://docs.uiza.io/#total-line).
 const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
 
 /** get_total_line */
-uiza.analytic.get_total_line('2018-11-01%2008:00', '2018-11-19%2014:00', 'rebuffer_count').then((res) => {
+uiza.analytic.get_total_line({
+  'start_date': '2019-02-28 00:00',
+  'end_date': '2019-03-01 23:00',
+  'metric': 'rebuffer_count'
+}).then((res) => {
   //Identifier of get_total_line
 }).catch((err) => {
   //Error
@@ -50,7 +54,11 @@ See details [here](https://docs.uiza.io/#type).
 const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
 
 /** get_type */
-uiza.analytic.get_type('2018-11-01%2008:00', '2018-11-19%2014:00', 'country').then((res) => {
+uiza.analytic.get_type({
+  'start_date': '2019-01-01',
+  'end_date': '2019-03-01',
+  'type_filter': 'country'
+}).then((res) => {
   //Identifier of get_type
 }).catch((err) => {
   //Error
@@ -85,7 +93,11 @@ See details [here](https://docs.uiza.io/#line).
 const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
 
 /** get_line */
-uiza.analytic.get_line('2019-01-01', '2019-03-01', 'rebuffer_count').then((res) => {
+uiza.analytic.get_line({
+  'start_date': '2019-01-01',
+  'end_date': '2019-03-01',
+  'type': 'rebuffer_count'
+}).then((res) => {
   //Identifier of get_line
 }).catch((err) => {
   //Error

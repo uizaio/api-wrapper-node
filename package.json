@@ -31,6 +31,7 @@
     "nyc": "^13.2.0"
   },
   "dependencies": {
+    "lodash": "^4.17.11",
     "nock": "^10.0.6",
     "node-fetch": "^2.3.0"
   },
