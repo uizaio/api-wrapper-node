@@ -27,7 +27,7 @@ Add this line to your package.json:
 
 ```node
 "dependencies": {
-  "uiza": "1.0.2",
+  "uiza": "1.1.0",
 }
 ```
 
