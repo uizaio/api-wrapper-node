@@ -27,7 +27,7 @@ Add this line to your package.json:
 
 ```node
 "dependencies": {
-  "uiza": "1.0.1",
+  "uiza": "1.1.0",
 }
 ```
 
@@ -81,12 +81,41 @@ Category has been splits into 3 types: `folder`, `playlist` and `tag`. These wil
 
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/CATEGORY.md).
 
+```node
+uiza.category.create({
+  'name': 'Folder sample 2',
+  'type': 'folder',
+  'orderNumber': 1,
+  'description': 'Folder description',
+  'icon': 'https://exemple.com/icon.png'
+}).then((res) => {
+  //Identifier of category has been created
+}).catch((err) => {
+  //Error
+});
+```
+
 ## Storage
 You can add your storage (`FTP`, `AWS S3`) with UIZA.
 After synced, you can select your content easier from your storage to [create entity](https://docs.uiza.io/#create-entity).
 
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/STORAGE.md).
 
+```node
+uiza.storage.add({
+  'name': 'axon',
+  'description': 'axon of Uiza, use for transcode',
+  'storageType': 'ftp',
+  'host': 'axon-example.uiza.io',
+  'username': 'uiza',
+  'password': '=59x@LPsd+w7qW',
+  'port': 21,
+}).then((res) => {
+  //Identifier of storage has been add
+}).catch((err) => {
+  //Error
+});
+```
 
 ## Live Streaming
 These APIs used to create and manage live streaming event.
@@ -95,16 +124,83 @@ These APIs used to create and manage live streaming event.
 
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/LIVE_STREAMING.md).
 
+
+```node
+uiza.live.create({
+  'name': 'test event',
+  'mode': 'push',
+  'encode': 1,
+  'dvr': 1,
+  'description': 'This is for test event',
+  'poster': '//image1.jpeg',
+  'thumbnail': '//image1.jpeg',
+  'linkStream': [
+    'https://playlist.m3u8'
+  ],
+  'resourceMode': 'single'
+}).then((res) => {
+    //Identifier of event has been created
+  }).catch((err) => {
+    //Error
+  });
+```
+
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed .
 
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/CALLBACK.md).
+
+```node
+uiza.callback.create({
+  'url': 'https://callback-url.uiza.co',
+  'method': 'POST'
+}).then((res) => {
+  //Identifier of callback has been created
+}).catch((err) => {
+  //Error
+});
+```
+
+## User Management
+You can manage user with APIs user. Uiza have 2 levels of user: Admin - This account will have the highest priority, can have permission to create & manage users. User - This account level is under Admin level. It only manages APIs that relates to this account.
+
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/USER_MANAGEMENT.md).
+
+```node
+uiza.user.create({
+  'status': 1,
+  'username': 'user_test_1',
+  'email': 'user_test@uiza.io',
+  'fullname': 'User Test',
+  'avatar': 'https://exemple.com/avatar.jpeg',
+  'dob': '05/15/2018',
+  'gender': 0,
+  'password': 'FMpsr<4[dGPu?B#u',
+  'isAdmin': 1
+}).then((res) => {
+  // Identifier of user has been created
+}).catch((err) => {
+  // Error
+});
+```
 
 ## Analytic
 Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
 These 15 metrics help you track playback performance, so your team can know exactly what’s going on.
 
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/ANALYTIC.md).
+
+```node
+uiza.analytic.get_total_line({
+  'start_date': '2019-02-28 00:00',
+  'end_date': '2019-03-01 23:00',
+  'metric': 'rebuffer_count'
+}).then((res) => {
+  //Identifier of get_total_line
+}).catch((err) => {
+  //Error
+});
+```
 
 ## Embed Metadata
 Embed metadata is information that can be embed into video/audio file. You can embed into file by adding a json compose these tag.
