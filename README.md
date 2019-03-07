@@ -191,8 +191,11 @@ These 15 metrics help you track playback performance, so your team can know exac
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/ANALYTIC.md).
 
 ```node
-uiza.analytic.get_total_line('2018-11-01%2008:00', '2018-11-19%2014:00', 'rebuffer_count')
-.then((res) => {
+uiza.analytic.get_total_line({
+  'start_date': '2019-02-28 00:00',
+  'end_date': '2019-03-01 23:00',
+  'metric': 'rebuffer_count'
+}).then((res) => {
   //Identifier of get_total_line
 }).catch((err) => {
   //Error
