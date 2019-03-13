@@ -8,7 +8,8 @@ This API will allow you setup a callback to your server when an entity is comple
 See details [here](https://docs.uiza.io/#create-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
 /** create */
 uiza.callback.create({
@@ -32,7 +33,8 @@ Retrieves the details of an existing callback.
 See details [here](https://docs.uiza.io/#retrieve-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
 /** create */
 uiza.callback.retrieve('1b1f97f9-9afd-46d1-a2e1-f3b3896374df').then((res) => {
@@ -64,7 +66,8 @@ This API will allow you setup a callback to your server when an entity is comple
 See details [here](https://docs.uiza.io/#update-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
 /** create */
 uiza.callback.update({
@@ -89,10 +92,13 @@ Retrieves the details of an existing callback.
 See details [here](https://docs.uiza.io/#delete-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
 /** create */
-uiza.callback.delete('1b1f97f9-9afd-46d1-a2e1-f3b3896374df').then((res) => {
+uiza.callback.delete({
+  id: '1b1f97f9-9afd-46d1-a2e1-f3b3896374df'
+}).then((res) => {
   //Identifier of callback has been deleted
 }).catch((err) => {
   //Error
