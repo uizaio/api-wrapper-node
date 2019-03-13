@@ -37,7 +37,7 @@ Get information of your added storage (FTP or AWS S3).
 See details [here](https://docs.uiza.io/#retrieve-a-storage).
 
 ```node
-uiza.storage.retrieve('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => {
+uiza.storage.retrieve({'id': '03e6a059-c6d2-440c-a653-1e309918c792'}).then((res) => {
   //Identifier of storage has been retrive
 }).catch((err) => {
   //Error
@@ -98,7 +98,7 @@ Example Response
 Remove storage that added to Uiza.
 
 ```node
-uiza.storage.remove('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => {
+uiza.storage.remove({'id': '03e6a059-c6d2-440c-a653-1e309918c792'}).then((res) => {
   //Identifier of storage has been removed
 }).catch((err) => {
   //Error

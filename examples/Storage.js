@@ -1,4 +1,5 @@
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
+const uiza = require('../lib/uiza')('your-authorization-key');
+uiza.setAppId('your-appId')
 
 /* add storage*/
 uiza.storage.add({
@@ -12,12 +13,12 @@ uiza.storage.add({
 }).then((res) => console.log(res)).catch((err) => console.log(err));
 
 /* retrieve storage*/
-uiza.storage.retrieve('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => console.log(res)).catch((err) => console.log(err));
+uiza.storage.retrieve({id: '63d2e97e-8089-4f3b-9449-c678eb841d14'}).then((res) => console.log(res)).catch((err) => console.log(err));
 
-/* update storage*/
+// /* update storage*/
 uiza.storage.update({
-  'id': '03e6a059-c6d2-440c-a653-1e309918c792',
-  'name': 'FTP Uiza',
+  'id': '63d2e97e-8089-4f3b-9449-c678eb841d14',
+  'name': 'FTP Uiza 1',
   'description': 'FTP of Uiza, use for transcode',
   'storageType': 'ftp',
   'host': 'ftp-example.uiza.io',
@@ -26,5 +27,5 @@ uiza.storage.update({
   'port': 21
 }).then((res) => console.log(res)).catch((err) => console.log(err));
 
-// /* remove storage*/
-uiza.storage.remove('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => console.log(res)).catch((err) => console.log(err));
+// // /* remove storage*/
+uiza.storage.remove({id: '63d2e97e-8089-4f3b-9449-c678eb841d14'}).then((res) => console.log(res)).catch((err) => console.log(err));
