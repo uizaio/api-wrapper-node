@@ -39,7 +39,7 @@ Get detail of category.
 See details [here](https://docs.uiza.io/?shell#retrieve-category).
 
 ```node
-uiza.category.retrieve('b8f2a6ec-d45f-4cc0-a32d-35ad0ad9f1b6')
+uiza.category.retrieve({'id': 'b8f2a6ec-d45f-4cc0-a32d-35ad0ad9f1b6'})
   .then((res) => {
     //Identifier of category
   }).catch((err) => {
@@ -178,7 +178,7 @@ Delete category
 See details [here](https://docs.uiza.io/#delete-category).
 
 ```node
-uiza.category.delete('c0d3e5f2-9ae7-4e46-94a2-29612d562db0')
+uiza.category.delete({id: 'b8f2a6ec-d45f-4cc0-a32d-35ad0ad9f1b6'})
   .then((res) => {
     //Identifier of category has been deleted
   }).catch((err) => {
