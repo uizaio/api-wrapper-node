@@ -30,7 +30,7 @@ uiza.category.update({
   'icon': 'https://exemple.com/icon.png'
 }).then((res) => console.log(res)).catch((err) => console.log(err));
 
-// /** delete */
+/** delete */
 uiza.category.delete({
   id: 'f42951b3-aee5-4cb3-9a10-172985c734b2',
 }).then((res) => console.log(res)).catch((err) => console.log(err));
