@@ -1,9 +1,11 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/live/entity/feed';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
+const path = '/api/public/v4/live/entity/feed';
+const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io'
+const yourAuthorizationKey = 'uap-123456789-f3c977b7';
+const uiza = require('../../../lib/uiza.js')(yourAuthorizationKey);
+uiza.setAppId('123456789')
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const POST_DATA_FOR_CREATING_VIDEO = {

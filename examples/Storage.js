@@ -15,7 +15,7 @@ uiza.storage.add({
 /* retrieve storage*/
 uiza.storage.retrieve({id: '63d2e97e-8089-4f3b-9449-c678eb841d14'}).then((res) => console.log(res)).catch((err) => console.log(err));
 
-// /* update storage*/
+/* update storage*/
 uiza.storage.update({
   'id': '63d2e97e-8089-4f3b-9449-c678eb841d14',
   'name': 'FTP Uiza 1',
@@ -27,5 +27,5 @@ uiza.storage.update({
   'port': 21
 }).then((res) => console.log(res)).catch((err) => console.log(err));
 
-// // /* remove storage*/
+/* remove storage*/
 uiza.storage.remove({id: '63d2e97e-8089-4f3b-9449-c678eb841d14'}).then((res) => console.log(res)).catch((err) => console.log(err));
