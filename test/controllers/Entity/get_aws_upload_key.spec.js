@@ -1,9 +1,11 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/admin/app/config/aws';
+const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io';
+const path = '/api/public/v4/admin/app/config/aws?appId=123';
 const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
+uiza.setAppId('123')
+
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const DATA_RESPONSE = {
