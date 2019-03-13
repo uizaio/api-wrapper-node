@@ -2,6 +2,44 @@ const uiza = require('../lib/uiza')('your-authorization-key');
 uiza.setAppId('your-appId')
 
 /** get */
-uiza.entity.get({
-  id: '797d4a02-cd33-40e3-912f-737cd6b3adda',
+uiza.entity.retrieve({
+  id: '7c754932-d264-4412-8a7c-a19d0caef79f',
+}).then((res) => console.log(res)).catch((err) => console.log(err));
+
+/** list */
+uiza.entity.list().then((res) => console.log(res)).catch((err) => console.log(err));
+
+/** create */
+uiza.entity.create({
+  name: 'Ahihi',
+  inputType: 's3'
+}).then((res) => console.log(res)).catch((err) => console.log(err));
+
+/** update */
+uiza.entity.update({
+  id: '7c754932-d264-4412-8a7c-a19d0caef79f',
+  name: 'Name updated'
+}).then((res) => console.log(res)).catch((err) => console.log(err));
+
+/** publish */
+uiza.entity.publish({
+  id: '7c754932-d264-4412-8a7c-a19d0caef79f'
+}).then((res) => console.log(res)).catch((err) => console.log(err));
+
+/** get_status_publish */
+uiza.entity.get_status_publish({
+  id: '7c754932-d264-4412-8a7c-a19d0caef79f',
+}).then((res) => console.log(res)).catch((err) => console.log(err));
+
+/** get_aws_upload_key */
+uiza.entity.get_aws_upload_key().then((res) => console.log(res)).catch((err) => console.log(err));
+
+/** delete */
+uiza.entity.delete({
+  id: '7c754932-d264-4412-8a7c-a19d0caef79f',
+}).then((res) => console.log(res)).catch((err) => console.log(err));
+
+/** search */
+uiza.entity.search({
+  keyword: 'python',
 }).then((res) => console.log(res)).catch((err) => console.log(err));
