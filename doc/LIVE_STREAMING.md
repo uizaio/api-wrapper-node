@@ -11,7 +11,8 @@ These APIs use to create a live streaming and manage the live streaming input (o
 See details [here](https://docs.uiza.io/#create-a-live-event).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
 /** create */
 uiza.live.create({
@@ -45,9 +46,10 @@ Retrieves the details of an existing event. You need only provide the unique ide
 See details [here](https://docs.uiza.io/#retrieve-a-live-event).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
-uiza.live.retrieve('1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab')
+uiza.live.retrieve({'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab'})
   .then((res) => {
     //Identifier of live event has been retrieved
   }).catch((err) => {
@@ -90,7 +92,8 @@ Update the specific Live event by edit values of parameters.
 See details [here](https://docs.uiza.io/#update-a-live-event).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
 uiza.live.update({
   'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab',
@@ -118,9 +121,10 @@ These API use to start a live event that has been create success. The Live chann
 See details [here](https://docs.uiza.io/#start-a-live-feed).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
-uiza.live.start_feed('8bb4bb3e-0042-4be6-a5f0-25dc65145b14')
+uiza.live.start_feed({'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab'})
   .then((res) => {
     // Identifier of event
   }).catch((err) => {
@@ -143,9 +147,10 @@ This API use to get a live view status . This view only show when event has been
 See details [here](https://docs.uiza.io/#get-view-of-live-feed).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
-uiza.live.get_view('8bb4bb3e-0042-4be6-a5f0-25dc65145b14')
+uiza.live.get_view({'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab'})
   .then((res) => {
     // Identifier of record (get from list record)
   }).catch((err) => {
@@ -169,9 +174,10 @@ Stop live event
 See details [here](https://docs.uiza.io/#stop-a-live-feed).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
-uiza.live.stop_feed('8bb4bb3e-0042-4be6-a5f0-25dc65145b14')
+uiza.live.stop_feed({'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab'})
   .then((res) => {
     // Identifier of event
   }).catch((err) => {
@@ -194,7 +200,8 @@ Retrieves list of recorded file after streamed (only available when your live ev
 See details [here](https://docs.uiza.io/#list-all-recorded-files).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
 uiza.live.list_recorded()
   .then((res) => {
@@ -249,9 +256,10 @@ Delete a recorded file
 See details [here](https://docs.uiza.io/#delete-a-record-file).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
-uiza.live.delete('id....')
+uiza.live.delete({'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab'})
   .then((res) => {
     // Identifier of deleting a record
   }).catch((err) => {
@@ -271,9 +279,10 @@ Convert recorded file into VOD entity. After converted, your file can be stream 
 See details [here](https://docs.uiza.io/#convert-into-vod).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.setAppId('your-appId')
 
-uiza.live.convert_to_vod('8bb4bb3e-0042-4be6-a5f0-25dc65145b14')
+uiza.live.convert_to_vod({'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab'})
   .then((res) => {
     // Identifier of record (get from list record)
   }).catch((err) => {
