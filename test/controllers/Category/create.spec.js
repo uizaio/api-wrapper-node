@@ -1,9 +1,11 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/media/metadata';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
+const path = '/api/public/v4/media/metadata';
+const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io'
+const yourAuthorizationKey = 'uap-123456789-f3c977b7';
+const uiza = require('../../../lib/uiza.js')(yourAuthorizationKey);
+uiza.setAppId('123456789')
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const POST_DATA_FOR_CREATING_CATEGORY = {
@@ -21,8 +23,7 @@ describe('Category-Controller', function () {
       .reply(200, {
         "data": {"id": "123"},
         "code": 200,
-      });
-
+      })
     const result = await uiza.category.create({
       ...POST_DATA_FOR_CREATING_CATEGORY
     });
