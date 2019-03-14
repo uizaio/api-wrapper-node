@@ -1,22 +1,12 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/admin/user/logout';
+const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io';
+const path = '/api/public/v4/admin/user/logout';
 const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
-const errorMessages = require('../../../lib/utils/Errors')();
+uiza.setAppId('123')
 
-const POST_DATA_FOR_CREATING_USER = {
-  'status': 1,
-  'username': 'user_test_123',
-  'email': 'user_test@uiza.io',
-  'fullname': 'User Test',
-  'avatar': 'https://exemple.com/avatar.jpeg',
-  'dob': '05/15/2018',
-  'gender': 0,
-  'password': 'FMpsr<4[dGPu?B#u',
-  'isAdmin': 0
-}
+const errorMessages = require('../../../lib/utils/Errors')();
 
 describe('User-Controller', function () {
   it('/POST: log_out successfully', async () => {
