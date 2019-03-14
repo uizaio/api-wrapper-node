@@ -1,35 +1,37 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/admin/user/changepassword';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
+const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io'
+const path = '/api/public/v4/admin/user/changePassword';
+const yourAuthorizationKey = 'uap-123456789-f3c977b7';
+const uiza = require('../../../lib/uiza.js')(yourAuthorizationKey);
+uiza.setAppId('123456789')
+
 const errorMessages = require('../../../lib/utils/Errors')();
 
-const PUT_DATA_FOR_CHANGE_PASSWORD = {
-  'id': 'a6b039cf-4f1e-4b3a-bece-8a5f800496df',
+const POST_DATA_FOR_CHANGE_PASSWORD = {
+  'usrId': 'a6b039cf-4f1e-4b3a-bece-8a5f800496df',
   'oldPassword': '123456789',
   'newPassword': '987654321'
 }
 
 describe('User-Controller', function () {
-  it('/PUT: change_password successfully', async () => {
+  it('/POST: change_password successfully', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(200, {
-        ...PUT_DATA_FOR_CHANGE_PASSWORD,
+        ...POST_DATA_FOR_CHANGE_PASSWORD,
         "code": 200,
       });
-
     const result = await uiza.user.change_password({
-      ...PUT_DATA_FOR_CHANGE_PASSWORD
+      ...POST_DATA_FOR_CHANGE_PASSWORD
     });
     expect(result.code).eq(200)
   });
 
-  it('/PUT: change_password missing parameters', async () => {
+  it('/POST: change_password missing parameters', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(400, {
         "code": 400,
       });
@@ -40,11 +42,11 @@ describe('User-Controller', function () {
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/PUT: unauthorized', async () => {
+  it('/POST: unauthorized', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(401, {
-        ...PUT_DATA_FOR_CHANGE_PASSWORD,
+        ...POST_DATA_FOR_CHANGE_PASSWORD,
         "code": 401,
       });
 
@@ -54,11 +56,11 @@ describe('User-Controller', function () {
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/PUT: not found', async () => {
+  it('/POST: not found', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(404, {
-        ...PUT_DATA_FOR_CHANGE_PASSWORD,
+        ...POST_DATA_FOR_CHANGE_PASSWORD,
         "code": 404,
       });
 
@@ -68,11 +70,11 @@ describe('User-Controller', function () {
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/PUT: wrong parameter', async () => {
+  it('/POST: wrong parameter', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(422, {
-        ...PUT_DATA_FOR_CHANGE_PASSWORD,
+        ...POST_DATA_FOR_CHANGE_PASSWORD,
         "code": 422,
       });
 
@@ -82,11 +84,11 @@ describe('User-Controller', function () {
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/PUT: had a problem with our server', async () => {
+  it('/POST: had a problem with our server', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(500, {
-        ...PUT_DATA_FOR_CHANGE_PASSWORD,
+        ...POST_DATA_FOR_CHANGE_PASSWORD,
         "code": 500,
       });
 
@@ -96,11 +98,11 @@ describe('User-Controller', function () {
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/PUT: service is unable', async () => {
+  it('/POST: service is unable', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(503, {
-        ...PUT_DATA_FOR_CHANGE_PASSWORD,
+        ...POST_DATA_FOR_CHANGE_PASSWORD,
         "code": 503,
       });
 
@@ -110,11 +112,11 @@ describe('User-Controller', function () {
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/PUT: caused by the client', async () => {
+  it('/POST: caused by the client', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(450, {
-        ...PUT_DATA_FOR_CHANGE_PASSWORD,
+        ...POST_DATA_FOR_CHANGE_PASSWORD,
         "code": 450,
       });
 
@@ -124,11 +126,11 @@ describe('User-Controller', function () {
     expect(result.message).eq(errorMessages.getMessage(result.type))
   });
 
-  it('/PUT: server has encountered', async () => {
+  it('/POST: server has encountered', async () => {
     nock(workspaceApiDomain)
-      .put(path)
+      .post(path)
       .reply(501, {
-        ...PUT_DATA_FOR_CHANGE_PASSWORD,
+        ...POST_DATA_FOR_CHANGE_PASSWORD,
         "code": 501,
       });
 

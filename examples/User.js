@@ -1,46 +1,28 @@
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
-
-/** create */
-uiza.user.create({
-  'status': 1,
-  'username': 'user_test_123',
-  'email': 'user_test@uiza.io',
-  'fullname': 'User Test',
-  'avatar': 'https://exemple.com/avatar.jpeg',
-  'dob': '05/15/2018',
-  'gender': 0,
-  'password': 'FMpsr<4[dGPu?B#u',
-  'isAdmin': 0
-}).then((res) => console.log(res)).catch((err) => console.log(err));
+const uiza = require('../lib/uiza')('your-authorization-key');
+uiza.setAppId('your-appId')
 
 /** retrieve */
-uiza.user.retrieve('23b0fa8e-d6db-4e8b-bd00-48dcaffda5cc').then((res) => console.log(res)).catch((err) => console.log(err));
+uiza.user.retrieve({
+  id: '5167cf93-6fcd-454d-80a7-92f1b2d81fd4'
+}).then((res) => console.log(res)).catch((err) => console.log(err));
 
 /** list */
 uiza.user.list().then((res) => console.log(res)).catch((err) => console.log(err));
 
 /** update */
 uiza.user.update({
-  'id': '9e4df7c2-111d-4107-9c2e-6d2cb13c06f0',
+  'id': '6a597947-83d0-4288-aa26-c32751e099f8',
   'status': 0,
-  'username': 'user_test_110',
-  'email': 'user_test@uiza.io',
+  'name': 'user_test_110',
   'avatar': 'https://exemple.com/avatar.jpeg',
-  'fullname': 'User Test',
-  'dob': '05/15/2018',
-  'gender': 0,
-  'password': '123456789',
-  'isAdmin': 1
+  'dob': '2018-10-05',
 }).then((res) => console.log(res)).catch((err) => console.log(err));
-
-/** delete */
-uiza.user.delete('9e4df7c2-111d-4107-9c2e-6d2cb13c06f0').then((res) => console.log(res)).catch((err) => console.log(err));
 
 /** Update password */
 uiza.user.change_password({
-  'id': 'a6b039cf-4f1e-4b3a-bece-8a5f800496df',
-  'oldPassword': '123456789',
-  'newPassword': '987654321'
+  'userId': 'd4eb01ad-3384-49b2-8b89-9bb685d9abfc',
+  'oldPassword': 'Huulockfc1',
+  'newPassword': 'Huulockfc1'
 }).then((res) => console.log(res)).catch((err) => console.log(err));
 
 /** Log Out */
