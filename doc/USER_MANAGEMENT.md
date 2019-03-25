@@ -13,6 +13,10 @@ Create an user account for workspace
 See details [here](https://docs.uiza.io/#create-an-user).
 
 ```node
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
 uiza.user.create({
   'status': 1,
   'username': 'user_test_1',

@@ -10,7 +10,9 @@ Category use to group all the same entities into a group (like Folder/ playlist/
 See details [here](https://docs.uiza.io/#create-category).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
 /** create */
 uiza.category.create({

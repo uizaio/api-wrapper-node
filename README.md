@@ -55,7 +55,9 @@ See details [here](https://docs.uiza.io/#authentication).
 ## Node
 
 ```node
-const uiza = require('uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 ```
 
 ## Entity
