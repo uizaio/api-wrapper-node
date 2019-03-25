@@ -2,11 +2,15 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
+const authorization = 'uap-123456123456-123456';
+const uiza = require('../../../lib/uiza.js');
+uiza.workspace_api_domain(workspaceApiDomain);
+uiza.authorization(authorization);
+
 const start_date = '2018-11-01%2008:00';
 const end_date = '2018-11-19%2014:00';
 const type = 'rebuffer_count';
 const path = '/api/public/v3/analytic/entity/video-quality/line';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const DATA_RESPONSE = {
