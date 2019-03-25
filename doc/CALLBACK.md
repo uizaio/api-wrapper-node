@@ -8,7 +8,9 @@ This API will allow you setup a callback to your server when an entity is comple
 See details [here](https://docs.uiza.io/#create-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
 /** create */
 uiza.callback.create({

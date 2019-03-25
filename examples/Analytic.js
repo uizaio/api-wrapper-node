@@ -1,4 +1,6 @@
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
+const uiza = require('../lib/uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
 /** get_total_line */
 uiza.analytic.get_total_line({

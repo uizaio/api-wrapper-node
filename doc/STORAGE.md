@@ -11,6 +11,10 @@ After synced, you can select your content easier from your storage to create ent
 See details [here](https://docs.uiza.io/#add-a-storage).
 
 ```node
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
 uiza.storage.add({
   'name': 'axon',
   'description': 'axon of Uiza, use for transcode',
