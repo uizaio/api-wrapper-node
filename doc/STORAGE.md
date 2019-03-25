@@ -15,7 +15,7 @@ const uiza = require('uiza');
 uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
 uiza.authorization('your-authorization-key');
 
-uiza.storage.add({
+const params = {
   'name': 'axon',
   'description': 'axon of Uiza, use for transcode',
   'storageType': 'ftp',
@@ -23,7 +23,9 @@ uiza.storage.add({
   'username': 'uiza',
   'password': '=59x@LPsd+w7qW',
   'port': 21,
-}).then((res) => {
+}
+
+uiza.storage.add(params).then((res) => {
   //Identifier of storage has been add
 }).catch((err) => {
   //Error
@@ -41,7 +43,14 @@ Get information of your added storage (FTP or AWS S3).
 See details [here](https://docs.uiza.io/#retrieve-a-storage).
 
 ```node
-uiza.storage.retrieve('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => {
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const paramsID = '03e6a059-c6d2-440c-a653-1e309918c792';
+
+uiza.storage.retrieve(paramsId)
+.then((res) => {
   //Identifier of storage has been retrive
 }).catch((err) => {
   //Error
@@ -76,7 +85,11 @@ Update storage's information.
 See details [here](https://docs.uiza.io/#update-storage).
 
 ```node
-uiza.storage.update({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'id': '03e6a059-c6d2-440c-a653-1e309918c792',
   'name': 'FTP Uiza',
   'description': 'FTP of Uiza, use for transcode',
@@ -85,7 +98,10 @@ uiza.storage.update({
   'username': 'uiza',
   'password': '=59x@LPsd+w7qW',
   'port': 21
-}).then((res) => {
+}
+
+uiza.storage.update(params)
+.then((res) => {
   //Identifier of storage has been update
 }).catch((err) => {
   //Error
@@ -102,7 +118,14 @@ Example Response
 Remove storage that added to Uiza.
 
 ```node
-uiza.storage.remove('03e6a059-c6d2-440c-a653-1e309918c792').then((res) => {
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const paramsId = '03e6a059-c6d2-440c-a653-1e309918c792'
+
+uiza.storage.remove(paramsId)
+.then((res) => {
   //Identifier of storage has been removed
 }).catch((err) => {
   //Error
