@@ -1,8 +1,13 @@
 const expect = require('chai').expect;
 var nock = require('nock');
-const uiza = require('../../../lib/uiza.js')('https://your-workspace-api-domain.uiza.co');
-const errorMessages = require('../../../lib/utils/Errors');
+
 const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
+const authorization = 'uap-123456123456-123456';
+const uiza = require('../../../lib/uiza.js');
+uiza.workspace_api_domain(workspaceApiDomain);
+uiza.authorization(authorization);
+
+const errorMessages = require('../../../lib/utils/Errors');
 const pathURL = '/api/public/v3/media/entity/publish';
 
 var dataResponseSuccess = { 
