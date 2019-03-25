@@ -12,7 +12,9 @@ About grouped by hour algorithm, Uiza currently support up to 16 days (it means 
 See details [here](https://docs.uiza.io/#total-line).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
 /** get_total_line */
 uiza.analytic.get_total_line({

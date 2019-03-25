@@ -11,7 +11,9 @@ These APIs use to create a live streaming and manage the live streaming input (o
 See details [here](https://docs.uiza.io/#create-a-live-event).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
 /** create */
 uiza.live.create({
