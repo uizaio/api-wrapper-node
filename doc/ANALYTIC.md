@@ -12,14 +12,18 @@ About grouped by hour algorithm, Uiza currently support up to 16 days (it means 
 See details [here](https://docs.uiza.io/#total-line).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
-/** get_total_line */
-uiza.analytic.get_total_line({
+const params = {
   'start_date': '2019-02-28 00:00',
   'end_date': '2019-03-01 23:00',
   'metric': 'rebuffer_count'
-}).then((res) => {
+}
+
+/** get_total_line */
+uiza.analytic.get_total_line(params).then((res) => {
   //Identifier of get_total_line
 }).catch((err) => {
   //Error
@@ -51,14 +55,18 @@ Get data base on 4 type of filter: country, device, title, player
 See details [here](https://docs.uiza.io/#type).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
-/** get_type */
-uiza.analytic.get_type({
+const params = {
   'start_date': '2019-01-01',
   'end_date': '2019-03-01',
   'type_filter': 'country'
-}).then((res) => {
+}
+
+/** get_type */
+uiza.analytic.get_type(params).then((res) => {
   //Identifier of get_type
 }).catch((err) => {
   //Error
@@ -90,14 +98,18 @@ About grouped by hour algorithm, Uiza currently support upto 16 days (it's mean 
 See details [here](https://docs.uiza.io/#line).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
-/** get_line */
-uiza.analytic.get_line({
+const params = {
   'start_date': '2019-01-01',
   'end_date': '2019-03-01',
   'type': 'rebuffer_count'
-}).then((res) => {
+}
+
+/** get_line */
+uiza.analytic.get_line(params).then((res) => {
   //Identifier of get_line
 }).catch((err) => {
   //Error

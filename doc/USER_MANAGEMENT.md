@@ -13,7 +13,11 @@ Create an user account for workspace
 See details [here](https://docs.uiza.io/#create-an-user).
 
 ```node
-uiza.user.create({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'status': 1,
   'username': 'user_test_1',
   'email': 'user_test@uiza.io',
@@ -23,7 +27,10 @@ uiza.user.create({
   'gender': 0,
   'password': 'FMpsr<4[dGPu?B#u',
   'isAdmin': 1
-}).then((res) => {
+}
+
+uiza.user.create(params)
+.then((res) => {
   // Identifier of user has been created
 }).catch((err) => {
   // Error
@@ -56,7 +63,13 @@ Retrieves the details of an existing user. You need only supply the unique userI
 See details [here](https://docs.uiza.io/#retrieve-an-user).
 
 ```node
-uiza.user.retrieve('55ff6888-55b7-4d5b-b090-b5b3ad511fe7')
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const paramsId = '55ff6888-55b7-4d5b-b090-b5b3ad511fe7'
+
+uiza.user.retrieve(paramsId)
   .then((res) => {
     // Identifier of user
   }).catch((err) => {
@@ -89,7 +102,12 @@ See details [here](https://docs.uiza.io/#list-all-users).
 
 
 ```node
-uiza.user.list().then((res) => {
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+uiza.user.list()
+.then((res) => {
   //Get list of user including all detail.
 }).catch((err) => {
   //Error
@@ -128,7 +146,11 @@ See details [here](https://docs.uiza.io/#update-an-user).
 
 
 ```node
-uiza.user.update({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'id': '9e4df7c2-111d-4107-9c2e-6d2cb13c06f0',
   'status': 0,
   'username': 'user_test_110',
@@ -139,7 +161,9 @@ uiza.user.update({
   'gender': 0,
   'password': '123456789',
   'isAdmin': 1
-}).then((res) => {
+}
+
+uiza.user.update(params).then((res) => {
   // Identifier of user wanted to update
 }).catch((err) => {
   //Error
@@ -158,7 +182,14 @@ Permanently deletes an user. It cannot be undone. Also immediately cancels all t
 See details [here](https://docs.uiza.io/#delete-an-user).
 
 ```node
-uiza.user.delete('9e4df7c2-111d-4107-9c2e-6d2cb13c06f0').then((res) => {
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const paramsId = '9e4df7c2-111d-4107-9c2e-6d2cb13c06f0'
+
+uiza.user.delete(paramsId)
+.then((res) => {
   // 	Result of user has been deleted
 }).catch((err) => {
   //Error
@@ -177,12 +208,18 @@ Update password allows Admin or User update their current password.
 See details [here](https://docs.uiza.io/#update-password).
 
 ```node
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 
-uiza.user.change_password({
+const params = {
   'id': '263bbbb8-c0c9-4e1f-9123-af3a3fd46b80',
   'oldPassword': 'FMpsr<4[dGPu?B#u',
   'newPassword': 'S57Eb{:aMZhW=)G$'
-}).then((res) => {
+}
+
+uiza.user.change_password(params)
+.then((res) => {
   // Identifier of user has been reset password
 }).catch((err) => {
   //Error
@@ -200,6 +237,10 @@ This API use to log out an user. After logged out, token will be removed.
 See details [here](https://docs.uiza.io/#log-out).
 
 ```node
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
 uiza.user.log_out()
   .then((res) => {
     // Identifier of task publish

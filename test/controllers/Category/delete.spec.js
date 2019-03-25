@@ -2,9 +2,13 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
+const authorization = 'uap-123456123456-123456';
+const uiza = require('../../../lib/uiza.js');
+uiza.workspace_api_domain(workspaceApiDomain);
+uiza.authorization(authorization);
+
 const id = 'dd934a87-3342-41fa-8cdf-6381b6d92105';
 const path = '/api/public/v3/media/metadata';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const DELETE_DATA_RESPONSE = {

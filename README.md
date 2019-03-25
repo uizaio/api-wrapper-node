@@ -27,7 +27,7 @@ Add this line to your package.json:
 
 ```node
 "dependencies": {
-  "uiza": "1.1.0",
+  "uiza": "1.1.1",
 }
 ```
 
@@ -55,7 +55,9 @@ See details [here](https://docs.uiza.io/#authentication).
 ## Node
 
 ```node
-const uiza = require('uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
 ```
 
 ## Entity
@@ -64,16 +66,27 @@ These below APIs used to take action with your media files (we called Entity).
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/master_v3/doc/ENTITY.md).
 
 ```node
-uiza.entity.create({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'name': 'Sample Video',
   'url': 'https://example.com/video.mp4',
   'inputType': 'http',
   'description': 'tes'
-}).then((res) => {
+}
+
+uiza.entity.create(params)
+.then((res) => {
   //Identifier of entity has been created
 }).catch((err) => {
   //Error
 });
+
+//Example Response
+
+{ id: '416b342a-4165-4c94-9eed-253aa5312f72' }
 ```
 
 ## Category
@@ -82,17 +95,28 @@ Category has been splits into 3 types: `folder`, `playlist` and `tag`. These wil
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/master_v3/doc/CATEGORY.md).
 
 ```node
-uiza.category.create({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'name': 'Folder sample 2',
   'type': 'folder',
   'orderNumber': 1,
   'description': 'Folder description',
   'icon': 'https://exemple.com/icon.png'
-}).then((res) => {
+}
+
+uiza.category.create(params)
+.then((res) => {
   //Identifier of category has been created
 }).catch((err) => {
   //Error
 });
+
+//Example Response
+
+{ id: 'b8f2a6ec-d45f-4cc0-a32d-35ad0ad9f1b6' }
 ```
 
 ## Storage
@@ -102,7 +126,11 @@ After synced, you can select your content easier from your storage to [create en
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/master_v3/doc/STORAGE.md).
 
 ```node
-uiza.storage.add({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'name': 'axon',
   'description': 'axon of Uiza, use for transcode',
   'storageType': 'ftp',
@@ -110,11 +138,17 @@ uiza.storage.add({
   'username': 'uiza',
   'password': '=59x@LPsd+w7qW',
   'port': 21,
-}).then((res) => {
+}
+
+uiza.storage.add(params).then((res) => {
   //Identifier of storage has been add
 }).catch((err) => {
   //Error
 });
+
+//Example Response
+
+{ id: '416b342a-4165-4c94-9eed-253aa5312f72' }
 ```
 
 ## Live Streaming
@@ -126,7 +160,11 @@ See details [here](https://github.com/uizaio/api-wrapper-node/blob/master_v3/doc
 
 
 ```node
-uiza.live.create({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'name': 'test event',
   'mode': 'push',
   'encode': 1,
@@ -138,11 +176,18 @@ uiza.live.create({
     'https://playlist.m3u8'
   ],
   'resourceMode': 'single'
-}).then((res) => {
-    //Identifier of event has been created
-  }).catch((err) => {
-    //Error
-  });
+}
+
+uiza.live.create(params)
+.then((res) => {
+  //Identifier of event has been created
+}).catch((err) => {
+  //Error
+});
+
+//Example Response
+
+{ id: '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab' }
 ```
 
 ## Callback
@@ -151,14 +196,25 @@ Callback used to retrieve an information for Uiza to your server, so you can hav
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/master_v3/doc/CALLBACK.md).
 
 ```node
-uiza.callback.create({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'url': 'https://callback-url.uiza.co',
   'method': 'POST'
-}).then((res) => {
+}
+
+uiza.callback.create(params)
+.then((res) => {
   //Identifier of callback has been created
 }).catch((err) => {
   //Error
 });
+
+//Example Response
+
+{ "id": "8b83886e-9cc3-4eab-9258-ebb16c0c73de" }
 ```
 
 ## User Management
@@ -167,7 +223,11 @@ You can manage user with APIs user. Uiza have 2 levels of user: Admin - This acc
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/master_v3/doc/USER_MANAGEMENT.md).
 
 ```node
-uiza.user.create({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'status': 1,
   'username': 'user_test_1',
   'email': 'user_test@uiza.io',
@@ -177,11 +237,32 @@ uiza.user.create({
   'gender': 0,
   'password': 'FMpsr<4[dGPu?B#u',
   'isAdmin': 1
-}).then((res) => {
+}
+
+uiza.user.create(params)
+.then((res) => {
   // Identifier of user has been created
 }).catch((err) => {
   // Error
 });
+
+//Example Response
+
+{ 
+  status: 1,
+  username: 'user_test_1',
+  email: 'user_test@uiza.io',
+  fullname: 'User Test',
+  avatar: 'https://exemple.com/avatar.jpeg',
+  dob: '05/15/2018',
+  gender: 0,
+  password: 'sha1$3162c519$1$3dd7e93d1be2ee552ccff6cede4543d2a609154b',
+  isAdmin: 1,
+  appId: 'a2aaa7b2aea746ec89e67ad2f8f9ebbf',
+  adminUserId: '16742354-03f2-43fc-b7de-c46071ca8767',
+  isMaster: 0,
+  id: 'c1a4bdbe-6abe-46dd-adb1-1bbd16813ee1'
+}
 ```
 
 ## Analytic
@@ -191,15 +272,39 @@ These 15 metrics help you track playback performance, so your team can know exac
 See details [here](https://github.com/uizaio/api-wrapper-node/blob/master_v3/doc/ANALYTIC.md).
 
 ```node
-uiza.analytic.get_total_line({
+const uiza = require('uiza');
+uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
+uiza.authorization('your-authorization-key');
+
+const params = {
   'start_date': '2019-02-28 00:00',
   'end_date': '2019-03-01 23:00',
   'metric': 'rebuffer_count'
-}).then((res) => {
+}
+
+uiza.analytic.get_total_line(params)
+.then((res) => {
   //Identifier of get_total_line
 }).catch((err) => {
   //Error
 });
+
+//Example Response
+
+[
+  {
+      "date_time": 1542978000000,
+      "rebuffer_count": 1.6666666666666667
+  },
+  {
+      "date_time": 1543204800000,
+      "rebuffer_count": 0.5
+  },
+  {
+      "date_time": 1543215600000,
+      "rebuffer_count": 5
+  }
+]
 ```
 
 ## Embed Metadata
