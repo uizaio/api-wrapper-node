@@ -2,9 +2,11 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io';
-const path = '/api/public/v4/admin/user?appId=123456789';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
-uiza.setAppId('123456789')
+const path = '/api/public/v4/admin/user?appId=your-app-id';
+const yourAuthorizationKey = 'your-authorization';
+const uiza = require('../../../lib/uiza.js');
+uiza.authorization(yourAuthorizationKey);
+uiza.app_id('your-app-id');
 
 const id = 'd1781e62-2d2c-4e3c-b8de-e808e50ac845';
 const errorMessages = require('../../../lib/utils/Errors')();

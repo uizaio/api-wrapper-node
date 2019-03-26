@@ -3,8 +3,10 @@ const nock = require('nock');
 
 const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io';
 const path = '/api/public/v4/admin/user/logout';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
-uiza.setAppId('123')
+const yourAuthorizationKey = 'your-authorization';
+const uiza = require('../../../lib/uiza.js');
+uiza.authorization(yourAuthorizationKey);
+uiza.app_id('your-app-id');
 
 const errorMessages = require('../../../lib/utils/Errors')();
 

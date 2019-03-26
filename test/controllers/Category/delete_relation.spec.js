@@ -7,9 +7,10 @@ const data = {
   'metadataIds': ['689d3752-5515-4e35-993b-e02f370cf46c','32e8a1f4-e3b6-4369-a30d-60c6715896d1']
 };
 const path = '/api/public/v4/media/entity/related/metadata';
-const yourAuthorizationKey = 'uap-123456789-f3c977b7';
-const uiza = require('../../../lib/uiza.js')(yourAuthorizationKey);
-uiza.setAppId('123456789')
+const yourAuthorizationKey = 'your-authorization';
+const uiza = require('../../../lib/uiza.js');
+uiza.authorization(yourAuthorizationKey);
+uiza.app_id('your-app-id');
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const DELETE_DATA_RESPONSE = {

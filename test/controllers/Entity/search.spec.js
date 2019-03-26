@@ -2,9 +2,11 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io';
-const path = '/api/public/v4/media/entity/search?appId=123';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
-uiza.setAppId('123')
+const path = '/api/public/v4/media/entity/search?appId=your-app-id';
+const yourAuthorizationKey = 'your-authorization';
+const uiza = require('../../../lib/uiza.js');
+uiza.authorization(yourAuthorizationKey);
+uiza.app_id('your-app-id');
 
 const keyword = 'sample';
 const errorMessages = require('../../../lib/utils/Errors')();
@@ -37,7 +39,7 @@ describe('Entity-Controller', function () {
 
   it('/GET: search missing parameters', async () => {
     nock(workspaceApiDomain)
-      .get(`${path}&keyword=undefined`)
+      .get(`${path}`)
       .reply(400, {
         "code": 400,
       });

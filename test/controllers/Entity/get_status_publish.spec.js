@@ -2,9 +2,11 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io';
-const path = '/api/public/v4/media/entity/publish/status?appId=123';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
-uiza.setAppId('123')
+const path = '/api/public/v4/media/entity/publish/status?appId=your-app-id';
+const yourAuthorizationKey = 'your-authorization';
+const uiza = require('../../../lib/uiza.js');
+uiza.authorization(yourAuthorizationKey);
+uiza.app_id('your-app-id');
 
 const id = '123';
 
@@ -49,7 +51,7 @@ describe('Entity-Controller', function () {
 
   it('/GET: get_status_publish missing parameters', async () => {
     nock(workspaceApiDomain)
-      .get(`${path}&id=undefined`)
+      .get(`${path}`)
       .reply(400, {
         "code": 400,
       });
