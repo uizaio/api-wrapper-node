@@ -3,8 +3,10 @@ const nock = require('nock');
 
 const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io';
 const path = '/api/public/v4/media/entity';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
-uiza.setAppId('123')
+
+const uiza = require('../../../lib/uiza.js');
+uiza.app_id('your-app-id');
+
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const POST_DATA_FOR_CREATING_VIDEO = {

@@ -1,5 +1,6 @@
-const uiza = require('../lib/uiza')('your-authorization-key');
-uiza.setAppId('your-appId')
+const uiza = require('../lib/uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
 
 /** retrieve */
 uiza.user.retrieve({

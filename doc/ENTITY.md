@@ -9,12 +9,16 @@ Create entity using full URL. Direct HTTP, FTP or AWS S3 link are acceptable.
 See details [here](https://docs.uiza.io/#create-entity).
 
 ```node
-uiza.entity.create({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'name': 'Sample Video',
-  'url': 'https://example.com/video.mp4',
   'inputType': 'http',
-  'description': 'tes'
-}).then((res) => {
+};
+
+uiza.entity.create(params).then((res) => {
   //Identifier of entity has been created
 }).catch((err) => {
   //Error
@@ -33,9 +37,15 @@ Get detail of entity including all information of entity.
 See details [here](https://docs.uiza.io/#retrieve-an-entity).
 
 ```node
-uiza.entity.retrieve({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'id': 'd1781e62-2d2c-4e3c-b8de-e808e50ac845'
-}).then((res) => {
+};
+
+uiza.entity.retrieve(params).then((res) => {
   //Identifier of entity
 }).catch((err) => {
   //Error
@@ -117,10 +127,16 @@ See details [here](https://docs.uiza.io/#update-an-entity).
 
 
 ```node
-uiza.entity.update({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'id': '16de511f-5.......',
   'name': '--Title edited--',
-}).then((res) => {
+};
+
+uiza.entity.update(params).then((res) => {
   // Identifier of entity has been updated
 }).catch((err) => {
   //Error
@@ -139,7 +155,15 @@ Delete entity.
 See details [here](https://docs.uiza.io/#delete-an-entity).
 
 ```node
-uiza.entity.delete({'id': '5f1c78bd-69......'}).then((res) => {
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
+  'id': '16de511f-5.......'
+};
+
+uiza.entity.delete(params).then((res) => {
   // Identifier of entity has been deleted
 }).catch((err) => {
   //Error
@@ -160,7 +184,15 @@ Search entity base on keyword entered.
 See details [here](https://docs.uiza.io/#search-entity).
 
 ```node
-uiza.entity.search({'keyword': 'sample'}).then((res) => {
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
+  keyword: 'python',
+};
+
+uiza.entity.search(params).then((res) => {
   // Response search entity base on keyword entered
 }).catch((err) => {
   //Error
@@ -212,9 +244,15 @@ Publish entity to CDN, use for streaming.
 See details [here](https://docs.uiza.io/#publish-entity-to-cdn).
 
 ```node
-uiza.entity.publish({
-  'id': '1a6600c0-6ecd-4ca9-9ee1-3125e7c9d9f8',
-}).then((res) => {
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
+  'id': '16de511f-5.......'
+};
+
+uiza.entity.publish(params).then((res) => {
   // Identifier of task publish
 }).catch((err) => {
   //Error
@@ -237,9 +275,15 @@ See details [here](https://docs.uiza.io/#get-status-publish).
 
 
 ```node
-uiza.entity.get_status_publish({
-  'id': '8c6de86e-f468-4226-b476-4f320bda225a',
-}).then((res) => {
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
+  'id': '16de511f-5.......'
+};
+
+uiza.entity.get_status_publish(params).then((res) => {
   //Progress of task publish, will be success when reach 100
   // Status of task publish (processing, success, error)
 }).catch((err) => {
@@ -260,6 +304,10 @@ See details [here](https://docs.uiza.io/#get-aws-upload-key).
 
 
 ```node
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
 uiza.entity.get_aws_upload_key()
 .then((res) => {
   // The response body will return you the paramaters that used for input to aws sdk , then upload your files to Uiza’s storage
