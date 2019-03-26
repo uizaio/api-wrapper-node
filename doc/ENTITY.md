@@ -44,9 +44,7 @@ const uiza = require('uiza');
 uiza.workspace_api_domain('your-workspace-api-domain.uiza.co');
 uiza.authorization('your-authorization-key');
 
-const params = {
-  'id': 'd1781e62-2d2c-4e3c-b8de-e808e50ac845'
-}
+const params = 'id': 'd1781e62-2d2c-4e3c-b8de-e808e50ac845';
 
 uiza.entity.retrieve(params)
 .then((res) => {
