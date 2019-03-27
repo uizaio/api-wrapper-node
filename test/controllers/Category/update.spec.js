@@ -3,9 +3,10 @@ const nock = require('nock');
 
 const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io'
 const path = '/api/public/v4/media/metadata';
-const yourAuthorizationKey = 'uap-123456789-f3c977b7';
-const uiza = require('../../../lib/uiza.js')(yourAuthorizationKey);
-uiza.setAppId('123456789')
+const yourAuthorizationKey = 'your-authorization';
+const uiza = require('../../../lib/uiza.js');
+uiza.authorization(yourAuthorizationKey);
+uiza.app_id('your-app-id');
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const PUT_DATA_FOR_UPDATING_VIDEO = {
