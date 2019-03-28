@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 var nock = require('nock');
 const errorMessages = require('../../../lib/utils/Errors');
 
-const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io';
+const workspaceApiDomain = 'https://ap-southeast-1-api.uiza.co';
 const pathURL = '/api/public/v4/media/entity/publish';
 const yourAuthorizationKey = 'your-authorization';
 const uiza = require('../../../lib/uiza.js');

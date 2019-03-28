@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io'
+const workspaceApiDomain = 'https://ap-southeast-1-api.uiza.co'
 const data = {
   'entityId': 'c71965ac-8808-4854-8fc3-85a22ac9eb73',
   'metadataIds': ['689d3752-5515-4e35-993b-e02f370cf46c','32e8a1f4-e3b6-4369-a30d-60c6715896d1']

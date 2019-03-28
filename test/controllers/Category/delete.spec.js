@@ -1,7 +1,7 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io'
+const workspaceApiDomain = 'https://ap-southeast-1-api.uiza.co'
 const id = 'dd934a87-3342-41fa-8cdf-6381b6d92105';
 const path = '/api/public/v4/media/metadata';
 const yourAuthorizationKey = 'your-authorization';
