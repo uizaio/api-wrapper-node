@@ -2,7 +2,7 @@ const expect = require('chai').expect;
 const nock = require('nock');
 
 const path = '/api/public/v4/live/entity/dvr?appId=your-app-id';
-const workspaceApiDomain = 'https://stag-ap-southeast-1-api.uizadev.io'
+const workspaceApiDomain = 'https://ap-southeast-1-api.uiza.co'
 const yourAuthorizationKey = 'your-authorization';
 const uiza = require('../../../lib/uiza.js');
 uiza.authorization(yourAuthorizationKey);
