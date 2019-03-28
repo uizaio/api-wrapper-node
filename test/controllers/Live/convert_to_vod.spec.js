@@ -1,10 +1,14 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
 const id = 'd1781e62-2d2c-4e3c-b8de-e808e50ac845';
-const path = '/api/public/v3/live/entity/dvr/convert-to-vod';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
+const path = '/api/public/v4/live/entity/dvr/convert-to-vod';
+const workspaceApiDomain = 'https://ap-southeast-1-api.uiza.co'
+const yourAuthorizationKey = 'your-authorization';
+const uiza = require('../../../lib/uiza.js');
+uiza.authorization(yourAuthorizationKey);
+uiza.app_id('your-app-id');
+
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const DATA_RESPONSE = {

@@ -5,7 +5,7 @@ Welcome to your new package!
 The Uiza Node library provides convenient access to the Uiza API from applications written in server-side JavaScript.
 
 ## Introduction
-This is the public API documents for Uiza version 3.0.
+This is the public API documents for Uiza version 4.0.
 
 The Uiza API is organized around RESTful standard.
 Our API has predictable, resource-oriented URLs, and uses HTTP response codes to indicate API errors.
@@ -27,7 +27,7 @@ Add this line to your package.json:
 
 ```node
 "dependencies": {
-  "uiza": "1.1.0",
+  "uiza": "1.2.0",
 }
 ```
 
@@ -48,28 +48,37 @@ $ npm install uiza --save
 * Node >=4
 
 ## Usage
-The library needs to be configured with your account's `workspace_api_domain` and `authorization` (API key).
+The library needs to be configured with your account's `authorization` (API key) and `appId` (App key).
 
 See details [here](https://docs.uiza.io/#authentication).
 
 ## Node
 
 ```node
-const uiza = require('uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
 ```
 
 ## Entity
 These below APIs used to take action with your media files (we called Entity).
 
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/ENTITY.md).
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/master/doc/ENTITY.md).
 
 ```node
-uiza.entity.create({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'name': 'Sample Video',
   'url': 'https://example.com/video.mp4',
   'inputType': 'http',
   'description': 'tes'
-}).then((res) => {
+};
+
+uiza.entity.create(params).then((res) => {
   //Identifier of entity has been created
 }).catch((err) => {
   //Error
@@ -79,16 +88,22 @@ uiza.entity.create({
 ## Category
 Category has been splits into 3 types: `folder`, `playlist` and `tag`. These will make the management of entity more easier.
 
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/CATEGORY.md).
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/master/doc/CATEGORY.md).
 
 ```node
-uiza.category.create({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'name': 'Folder sample 2',
   'type': 'folder',
   'orderNumber': 1,
   'description': 'Folder description',
   'icon': 'https://exemple.com/icon.png'
-}).then((res) => {
+};
+
+uiza.category.create(params).then((res) => {
   //Identifier of category has been created
 }).catch((err) => {
   //Error
@@ -99,10 +114,14 @@ uiza.category.create({
 You can add your storage (`FTP`, `AWS S3`) with UIZA.
 After synced, you can select your content easier from your storage to [create entity](https://docs.uiza.io/#create-entity).
 
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/STORAGE.md).
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/master/doc/STORAGE.md).
 
 ```node
-uiza.storage.add({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'name': 'axon',
   'description': 'axon of Uiza, use for transcode',
   'storageType': 'ftp',
@@ -110,7 +129,9 @@ uiza.storage.add({
   'username': 'uiza',
   'password': '=59x@LPsd+w7qW',
   'port': 21,
-}).then((res) => {
+};
+
+uiza.storage.add(params).then((res) => {
   //Identifier of storage has been add
 }).catch((err) => {
   //Error
@@ -122,11 +143,15 @@ These APIs used to create and manage live streaming event.
 * When a Live is not start : it's named as `Event`.
 * When have an `Event` , you can start it : it's named as `Feed`.
 
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/LIVE_STREAMING.md).
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/master/doc/LIVE_STREAMING.md).
 
 
 ```node
-uiza.live.create({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'name': 'test event',
   'mode': 'push',
   'encode': 1,
@@ -138,7 +163,10 @@ uiza.live.create({
     'https://playlist.m3u8'
   ],
   'resourceMode': 'single'
-}).then((res) => {
+};
+
+
+uiza.live.create(params).then((res) => {
     //Identifier of event has been created
   }).catch((err) => {
     //Error
@@ -148,13 +176,19 @@ uiza.live.create({
 ## Callback
 Callback used to retrieve an information for Uiza to your server, so you can have a trigger notice about an entity is upload completed .
 
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/CALLBACK.md).
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/master/doc/CALLBACK.md).
 
 ```node
-uiza.callback.create({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'url': 'https://callback-url.uiza.co',
   'method': 'POST'
-}).then((res) => {
+};
+
+uiza.callback.create(params).then((res) => {
   //Identifier of callback has been created
 }).catch((err) => {
   //Error
@@ -164,10 +198,14 @@ uiza.callback.create({
 ## User Management
 You can manage user with APIs user. Uiza have 2 levels of user: Admin - This account will have the highest priority, can have permission to create & manage users. User - This account level is under Admin level. It only manages APIs that relates to this account.
 
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/USER_MANAGEMENT.md).
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/master/doc/USER_MANAGEMENT.md).
 
 ```node
-uiza.user.create({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'status': 1,
   'username': 'user_test_1',
   'email': 'user_test@uiza.io',
@@ -177,35 +215,19 @@ uiza.user.create({
   'gender': 0,
   'password': 'FMpsr<4[dGPu?B#u',
   'isAdmin': 1
-}).then((res) => {
+};
+
+uiza.user.create(params).then((res) => {
   // Identifier of user has been created
 }).catch((err) => {
   // Error
 });
 ```
 
-## Analytic
-Monitor the four key dimensions of video QoS: playback failures, startup time, rebuffering, and video quality.
-These 15 metrics help you track playback performance, so your team can know exactly what’s going on.
-
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/ANALYTIC.md).
-
-```node
-uiza.analytic.get_total_line({
-  'start_date': '2019-02-28 00:00',
-  'end_date': '2019-03-01 23:00',
-  'metric': 'rebuffer_count'
-}).then((res) => {
-  //Identifier of get_total_line
-}).catch((err) => {
-  //Error
-});
-```
-
 ## Embed Metadata
 Embed metadata is information that can be embed into video/audio file. You can embed into file by adding a json compose these tag.
 
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/EMBED_METADATA.md).
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/master/doc/EMBED_METADATA.md).
 
 ## Errors Code
 Uiza uses conventional HTTP response codes to indicate the success or failure of an API request.
@@ -213,7 +235,7 @@ In general: Codes in the `2xx` range indicate success.
 Codes in the `4xx` range indicate an error that failed given the information provided (e.g., a required parameter was omitted, a charge failed, etc.).
 Codes in the `5xx` range indicate an error with Uiza's servers.
 
-See details [here](https://github.com/uizaio/api-wrapper-node/blob/develop/doc/ERRORS_CODE.md).
+See details [here](https://github.com/uizaio/api-wrapper-node/blob/master/doc/ERRORS_CODE.md).
 
 ## Development
 

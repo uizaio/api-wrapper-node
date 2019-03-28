@@ -8,13 +8,17 @@ This API will allow you setup a callback to your server when an entity is comple
 See details [here](https://docs.uiza.io/#create-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
 
 /** create */
-uiza.callback.create({
+const params = {
   'url': 'https://callback-url.uiza.co',
   'method': 'POST'
-}).then((res) => {
+};
+
+uiza.callback.create(params).then((res) => {
   //Identifier of callback has been created
 }).catch((err) => {
   //Error
@@ -32,10 +36,10 @@ Retrieves the details of an existing callback.
 See details [here](https://docs.uiza.io/#retrieve-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.app_id('your-app-id');
 
-/** create */
-uiza.callback.retrieve('1b1f97f9-9afd-46d1-a2e1-f3b3896374df').then((res) => {
+uiza.callback.retrieve().then((res) => {
   //Identifier of callback has been retrieved
 }).catch((err) => {
   //Error
@@ -64,14 +68,15 @@ This API will allow you setup a callback to your server when an entity is comple
 See details [here](https://docs.uiza.io/#update-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.app_id('your-app-id');
 
-/** create */
-uiza.callback.update({
+const params = {
   'id': '1b1f97f9-9afd-46d1-a2e1-f3b3896374df',
   'url': 'https://callback-url.uiza.co',
   'method': 'GET'
-}).then((res) => {
+} 
+uiza.callback.update(params).then((res) => {
   //Identifier of callback has been updated
 }).catch((err) => {
   //Error
@@ -89,10 +94,14 @@ Retrieves the details of an existing callback.
 See details [here](https://docs.uiza.io/#delete-a-callback).
 
 ```node
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization');
+const uiza = require('uiza')('your-authorization');
+uiza.app_id('your-app-id');
 
-/** create */
-uiza.callback.delete('1b1f97f9-9afd-46d1-a2e1-f3b3896374df').then((res) => {
+const params = {
+  id: '1b1f97f9-9afd-46d1-a2e1-f3b3896374df'
+};
+
+uiza.callback.delete(params).then((res) => {
   //Identifier of callback has been deleted
 }).catch((err) => {
   //Error

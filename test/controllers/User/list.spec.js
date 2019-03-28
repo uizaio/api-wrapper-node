@@ -1,9 +1,11 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/admin/user';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
+const workspaceApiDomain = 'https://ap-southeast-1-api.uiza.co';
+const path = '/api/public/v4/admin/user?appId=your-app-id&id=';
+const uiza = require('../../../lib/uiza.js');
+uiza.app_id('your-app-id');
+
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const DATA_RESPONSE = {
@@ -38,7 +40,6 @@ describe('User-Controller', function () {
         ...DATA_RESPONSE,
         "code": 200,
       });
-
     const result = await uiza.user.list();
     expect(result).eqls(DATA_RESPONSE.data);
   });

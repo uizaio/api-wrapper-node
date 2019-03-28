@@ -1,9 +1,12 @@
 const expect = require('chai').expect;
 const nock = require('nock');
 
-const workspaceApiDomain = 'https://your-workspace-api-domain.uiza.co';
-const path = '/api/public/v3/media/metadata';
-const uiza = require('../../../lib/uiza.js')(workspaceApiDomain);
+const workspaceApiDomain = 'https://ap-southeast-1-api.uiza.co'
+const path = '/api/public/v4/media/metadata';
+const yourAuthorizationKey = 'your-authorization';
+const uiza = require('../../../lib/uiza.js');
+uiza.authorization(yourAuthorizationKey);
+uiza.app_id('your-app-id');
 const errorMessages = require('../../../lib/utils/Errors')();
 
 const PUT_DATA_FOR_UPDATING_VIDEO = {

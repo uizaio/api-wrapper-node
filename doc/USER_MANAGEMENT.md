@@ -7,56 +7,21 @@ You can manage user with APIs user. Uiza have 2 levels of user
 
 See details [here](https://docs.uiza.io/#user-management).
 
-## Create an user
-Create an user account for workspace
-
-See details [here](https://docs.uiza.io/#create-an-user).
-
-```node
-uiza.user.create({
-  'status': 1,
-  'username': 'user_test_1',
-  'email': 'user_test@uiza.io',
-  'fullname': 'User Test',
-  'avatar': 'https://exemple.com/avatar.jpeg',
-  'dob': '05/15/2018',
-  'gender': 0,
-  'password': 'FMpsr<4[dGPu?B#u',
-  'isAdmin': 1
-}).then((res) => {
-  // Identifier of user has been created
-}).catch((err) => {
-  // Error
-});
-```
-
-Example Response
-
-```node
-{ 
-  status: 1,
-  username: 'user_test_1',
-  email: 'user_test@uiza.io',
-  fullname: 'User Test',
-  avatar: 'https://exemple.com/avatar.jpeg',
-  dob: '05/15/2018',
-  gender: 0,
-  password: 'sha1$3162c519$1$3dd7e93d1be2ee552ccff6cede4543d2a609154b',
-  isAdmin: 1,
-  appId: 'a2aaa7b2aea746ec89e67ad2f8f9ebbf',
-  adminUserId: '16742354-03f2-43fc-b7de-c46071ca8767',
-  isMaster: 0,
-  id: 'c1a4bdbe-6abe-46dd-adb1-1bbd16813ee1'
-}
-```
-
 ## Retrieve an user
 Retrieves the details of an existing user. You need only supply the unique userId that was returned upon user creation.
 
 See details [here](https://docs.uiza.io/#retrieve-an-user).
 
 ```node
-uiza.user.retrieve('55ff6888-55b7-4d5b-b090-b5b3ad511fe7')
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
+  'id': '03e6a059-c6d2-440c-a653-1e309918c792'
+};
+
+uiza.user.retrieve(params)
   .then((res) => {
     // Identifier of user
   }).catch((err) => {
@@ -89,6 +54,10 @@ See details [here](https://docs.uiza.io/#list-all-users).
 
 
 ```node
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
 uiza.user.list().then((res) => {
   //Get list of user including all detail.
 }).catch((err) => {
@@ -128,18 +97,19 @@ See details [here](https://docs.uiza.io/#update-an-user).
 
 
 ```node
-uiza.user.update({
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
+const params = {
   'id': '9e4df7c2-111d-4107-9c2e-6d2cb13c06f0',
   'status': 0,
-  'username': 'user_test_110',
-  'email': 'user_test@uiza.io',
+  'name': 'user_test_110',
   'avatar': 'https://exemple.com/avatar.jpeg',
-  'fullname': 'User Test',
-  'dob': '05/15/2018',
-  'gender': 0,
-  'password': '123456789',
-  'isAdmin': 1
-}).then((res) => {
+  'dob': '2018-10-05',
+};
+
+uiza.user.update(params).then((res) => {
   // Identifier of user wanted to update
 }).catch((err) => {
   //Error
@@ -152,37 +122,23 @@ Example Response
 { id: '9e4df7c2-111d-4107-9c2e-6d2cb13c06f0' }
 ```
 
-## Delete an user
-Permanently deletes an user. It cannot be undone. Also immediately cancels all token & information of this user.
-
-See details [here](https://docs.uiza.io/#delete-an-user).
-
-```node
-uiza.user.delete('9e4df7c2-111d-4107-9c2e-6d2cb13c06f0').then((res) => {
-  // 	Result of user has been deleted
-}).catch((err) => {
-  //Error
-});
-```
-
-Example Response
-
-```node
-{ result: true }
-```
-
 ## Update password
 Update password allows Admin or User update their current password.
 
 See details [here](https://docs.uiza.io/#update-password).
 
 ```node
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
 
-uiza.user.change_password({
-  'id': '263bbbb8-c0c9-4e1f-9123-af3a3fd46b80',
+const params = {
+  'userId': '263bbbb8-c0c9-4e1f-9123-af3a3fd46b80',
   'oldPassword': 'FMpsr<4[dGPu?B#u',
   'newPassword': 'S57Eb{:aMZhW=)G$'
-}).then((res) => {
+};
+
+uiza.user.change_password(params).then((res) => {
   // Identifier of user has been reset password
 }).catch((err) => {
   //Error
@@ -200,6 +156,10 @@ This API use to log out an user. After logged out, token will be removed.
 See details [here](https://docs.uiza.io/#log-out).
 
 ```node
+const uiza = require('uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
+
 uiza.user.log_out()
   .then((res) => {
     // Identifier of task publish

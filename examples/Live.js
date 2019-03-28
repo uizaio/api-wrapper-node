@@ -1,4 +1,6 @@
-const uiza = require('../lib/uiza')('your-workspace-api-domain.uiza.co', 'your-authorization-key');
+const uiza = require('../lib/uiza');
+uiza.authorization('your-authorization-key');
+uiza.app_id('your-app-id');
 
 /** create */
 uiza.live.create({
@@ -15,12 +17,12 @@ uiza.live.create({
   'resourceMode': 'single'
 }).then((res) => console.log(res)).catch((err) => console.log(err));
 
-/** retrieve */
-uiza.live.retrieve('1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab').then((res) => console.log(res)).catch((err) => console.log(err));
+// /** retrieve */
+uiza.live.retrieve({id: '7328b4aa-75c0-4c91-bc2a-0983bd5f79a9'}).then((res) => console.log(res)).catch((err) => console.log(err));
 
-// /** update */
+// // /** update */
 uiza.live.update({
-  'id': '1b2c6899-2bca-4d60-ae78-01d1c2f5a2ab',
+  'id': '7328b4aa-75c0-4c91-bc2a-0983bd5f79a9',
   'name': 'live test',
   'mode': 'pull',
   'encode': 0,
@@ -28,20 +30,20 @@ uiza.live.update({
   'resourceMode': 'single'
 }).then((res) => console.log(res)).catch((err) => console.log(err));
 
-/** Start a live feed */
-uiza.live.start_feed('8bb4bb3e-0042-4be6-a5f0-25dc65145b14').then((res) => console.log(res)).catch((err) => console.log(err));
+// /** Start a live feed */
+uiza.live.start_feed({id: '7328b4aa-75c0-4c91-bc2a-0983bd5f79a9'}).then((res) => console.log(res)).catch((err) => console.log(err));
 
-/** Get view of live feed */
-uiza.live.get_view('8bb4bb3e-0042-4be6-a5f0-25dc65145b14').then((res) => console.log(res)).catch((err) => console.log(err));
+// /** Get view of live feed */
+uiza.live.get_view({id: '7328b4aa-75c0-4c91-bc2a-0983bd5f79a9'}).then((res) => console.log(res)).catch((err) => console.log(err));
 
-/** Stop a live feed */
-uiza.live.stop_feed('8bb4bb3e-0042-4be6-a5f0-25dc65145b14').then((res) => console.log(res)).catch((err) => console.log(err));
+// /** Stop a live feed */
+uiza.live.stop_feed({id: '7328b4aa-75c0-4c91-bc2a-0983bd5f79a9'}).then((res) => console.log(res)).catch((err) => console.log(err));
 
-/** List all recorded files */
+// /** List all recorded files */
 uiza.live.list_recorded().then((res) => console.log(res)).catch((err) => console.log(err));
 
-/** Delete a record file */
-uiza.live.delete('c0d3e5f2-9ae7-4e46-94a2-29612d562db0').then((res) => console.log(res)).catch((err) => console.log(err));
+// /** Delete a record file */
+uiza.live.delete({id: '7328b4aa-75c0-4c91-bc2a-0983bd5f79a9'}).then((res) => console.log(res)).catch((err) => console.log(err));
 
-/** Convert into VOD */
-uiza.live.convert_to_vod('8bb4bb3e-0042-4be6-a5f0-25dc65145b14').then((res) => console.log(res)).catch((err) => console.log(err));
+// /** Convert into VOD */
+uiza.live.convert_to_vod({id: '7328b4aa-75c0-4c91-bc2a-0983bd5f79a9'}).then((res) => console.log(res)).catch((err) => console.log(err));
