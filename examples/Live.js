@@ -1,6 +1,24 @@
 const uiza = require('../lib/uiza');
-uiza.authorization('your-authorization-key');
-uiza.app_id('your-app-id');
+uiza.authorization('uap-9793615694244c409e5d79055c70e44c-833f06ee');
+
+// create live event with region
+uiza.live.get_region().then((res) => {
+  console.log(res)
+  uiza.live.create({
+    'name': 'test event',
+    'mode': 'push',
+    'encode': 1,
+    'dvr': 1,
+    'description': 'This is for test event',
+    'poster': '//image1.jpeg',
+    'thumbnail': '//image1.jpeg',
+    'linkStream': [
+      'https://5b44cf20b0388.streamlock.net:8443/live/ngrp:live_all/playlist.m3u8'
+    ],
+    'region': res.VIETNAM || null,
+    'resourceMode': 'single'
+  }).then((res) => console.log('Creation::', res)).catch((err) => console.log(err));
+}).catch((err) => console.log(err));
 
 /** create */
 uiza.live.create({
