@@ -2,7 +2,7 @@ const uiza = require('../lib/uiza');
 uiza.authorization('uap-9793615694244c409e5d79055c70e44c-833f06ee');
 
 // create live event with region
-uiza.live.get_region().then((res) => {
+uiza.live.get_regions().then((res) => {
   console.log(res)
   uiza.live.create({
     'name': 'test event',
